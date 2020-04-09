@@ -1,4 +1,5 @@
-"""Fuse 1000 RGB-D images from the 7-scenes dataset into a TSDF voxel volume with 2cm resolution.
+"""
+Fuse RGB-D images in selected directory.
 """
 
 
@@ -18,9 +19,14 @@ if __name__ == "__main__":
         '--data_dir',
         "-d",
         help='data directory in which formed data are contained')
+    parser.add_argument(
+        '--n_imgs',
+        "-n",
+        type=int,
+        help='number of images in the selected directrory')
     args = parser.parse_args()
     print("Estimating voxel volume bounds...")
-    n_imgs = 20
+    n_imgs = args.n_imgs
     # cam_intr = np.loadtxt("data/camera-intrinsics.txt", delimiter=' ')
     cam_intr = np.loadtxt(
         os.path.join(
